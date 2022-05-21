@@ -1,0 +1,99 @@
+ {% load static%} 
+
+<!DOCTYPE html>
+<html  lang="ar">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <title>LIBRARY</title>
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css'%}">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{% static 'plugins/jquery_datepacker/jquery_ui.css'%}">
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'dist/css/adminlte_ar.min.css'%}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  </head>
+  <body dir="rtl" class="hold-transition sidebar-mini">
+{% include 'parts/nav.html'%}
+<!-- {% include 'parts/side.html'%} -->
+
+ {% block content%}
+
+ {% endblock %}
+ {% include 'parts/footer.html'%}
+  </div>
+
+
+
+
+
+
+
+<!-- REQUIRED SCRIPTS -->
+<script src="{% static 'plugins/jquery_datepacker/jquery_ui.js'%}"></script>
+
+<!-- jQuery -->
+<script src="{%static 'plugins/jquery/jquery.min.js'%}"></script>
+<!-- Bootstrap -->
+<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+<!-- AdminLTE -->
+<script src="{% static 'dist/js/adminlte.js'%}"></script>
+<!-- OPTIONAL SCRIPTS -->
+
+
+<script src="{% static 'dist/js/demo.js'%}"></script>
+<!--<script src="{% static 'dist/js/pages/dashboard3.js'"></script>
+-->
+  
+{%for book in books%}
+<script>
+  $('.cat{{book.category.id}}').click(function(){
+    $('.bookhide').hide()
+    $('.book{{book.category.id}}').show()
+
+  });
+  $(".status{{book.status}}").click(function(){
+    $(".bookhide").hide()
+    $(".book{{book.status}}").show()
+  });
+</script>
+{% endfor%}
+
+</script>
+<script>
+  $('#catid').hide()
+  $('#addcat').click(function(){
+    $('#catid').show()
+  });
+  $('#backcat').click(function(){
+    $('#catid').hide()
+  });
+
+  $('#retal_peroid').keyup(function(){
+    $('#retal_total').val($('#retal_peroid').val()*$('#retal_price_day').val())
+  })
+  
+
+</script>
+<script>
+
+  $(document).ready(function(){
+    var total=0;
+    $('.totalprice').each(function(){
+      $(this).hide()
+      var price= $(this).text()
+      total +=parseInt(price)
+
+    });
+    $('#totalsalarys').text(total)
+
+  })
+</script>
+</body>
+</html>
